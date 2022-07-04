@@ -1,51 +1,48 @@
-/* Tags */
 h1 {
     text-align: center;
-  }
-  
-  /* Classes */
-  #color-palette {
+}
+
+#color-palette {
     text-align: center;
-  }
-  
-  .color {
+}
+
+.color {
     display: inline-block;
     width: 40px;
     height: 40px;
     border: 1px solid black;
-  }
-  
-  #pixel-board {
+}
+
+#pixel-board {
     text-align: center;
-  }
-  
-  /* Elementos Individuais */
-  .pixel {
+}
+
+.pixel {
     display: inline-block;
     width: 40px;
     height: 40px;
     border: 1px solid black;
     margin: 1px;
     background: white;
-  }
-  
-  .board-line {
+}
+
+.board-line {
     height: 44px;
-  }
-  
-  #clear-board {
+}
+
+#clear-board {
     display: block;
     margin: 0 auto;
     margin-top: 10px;
     margin-bottom: 10px;
-  }
-  
-  #board-input {
+}
+
+#board-input {
     margin-top: 10px;
     text-align: center;
-  }
-  
-  #board-input p {
+}
+
+#board-input p {
     color: gray;
     font-size: 14px;
-  }
+}
