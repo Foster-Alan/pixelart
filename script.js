@@ -100,7 +100,7 @@ function makeNewBoard() {
     boardPixels[index].addEventListener('click', coloring);
   }
 }
-
+    
 function handleClearBoard() {
   for (let index = 0; index < boardPixels.length; index += 1) {
     boardPixels[index].style.backgroundColor = 'rgb(255,255,255)';
