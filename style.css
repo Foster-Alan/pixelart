@@ -3,7 +3,6 @@ body {
 
 }
 
-
 h1 {
     text-align: center;
 }
@@ -31,6 +30,8 @@ h1 {
     border: 1px solid black;
     margin: 1px;
     background: white;
+    border-radius: 25%
+
 }
 
 .board-line {
