@@ -1,9 +1,12 @@
+// Variaveis
 const color = document.querySelectorAll('.color');
 const boardLineClass = '.board-line';
 let boardSize = 5;
 let boardPixels = document.querySelectorAll('.pixel');
 let boardLine = document.querySelectorAll(boardLineClass);
 
+// Funçoes
+// Criar paleta de cores aleatorias./ manter preto.
 function makeColors() {
   const numbers = [];
 
@@ -20,7 +23,7 @@ function makeColors() {
   color[2].style.backgroundColor = color3;
   color[3].style.backgroundColor = color4;
 }
-
+// Seletor
 function handleSelection(event) {
   const currentColor = event.target.classList;
   const previousColor = document.querySelector('.selected');
@@ -32,7 +35,7 @@ function handleSelection(event) {
     }
   }
 }
-
+// Guardar background-color do que for clicado
 function coloring(event) {
   const selectedElement = document.querySelector('.selected');
   const quadrado = event.target;
@@ -47,6 +50,7 @@ function coloring(event) {
   }
 }
 
+// Criar tabela de pixeis
 function makePixelBoard() {
   boardLine = document.querySelectorAll(boardLineClass);
 
@@ -64,6 +68,7 @@ function makePixelBoard() {
   }
 }
 
+
 function removeBoard() {
   boardPixels = document.querySelectorAll('.pixel');
   boardLine = document.querySelectorAll(boardLineClass);
@@ -77,6 +82,7 @@ function removeBoard() {
   }
 }
 
+// Criar borda inserindo numero
 function makeNewBoard() {
   if (!document.querySelector('#board-size').value > 0) {
     window.alert('Board inválido!');
@@ -101,6 +107,7 @@ function makeNewBoard() {
   }
 }
     
+// Voltar a cor branca
 function handleClearBoard() {
   for (let index = 0; index < boardPixels.length; index += 1) {
     boardPixels[index].style.backgroundColor = 'rgb(255,255,255)';
@@ -110,6 +117,7 @@ function handleClearBoard() {
 makePixelBoard();
 makeColors();
 
+// Eventos
 for (let index = 0; index < color.length; index += 1) {
   color[index].addEventListener('click', handleSelection);
 }

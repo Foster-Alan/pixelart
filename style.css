@@ -1,6 +1,13 @@
+body {
+    background-image: url(cores.jpg);
+
+}
+
+
 h1 {
     text-align: center;
 }
+
 
 #color-palette {
     text-align: center;
