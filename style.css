@@ -17,6 +17,7 @@ h1 {
     width: 40px;
     height: 40px;
     border: 1px solid black;
+    border-radius: 50%;
 }
 
 #pixel-board {
