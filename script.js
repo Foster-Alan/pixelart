@@ -1,134 +1,51 @@
-// Variaveis
-const color = document.querySelectorAll('.color');
-const boardLineClass = '.board-line';
-let boardSize = 5;
-let boardPixels = document.querySelectorAll('.pixel');
-let boardLine = document.querySelectorAll(boardLineClass);
+const colorPicker = document.getElementById('colorPicker');
+const grid = document.getElementById('grid');
+const resetButton = document.getElementById('resetButton');
+const gridSizeInput = document.getElementById('gridSize');
+const generateButton = document.getElementById('generateButton');
 
-// Funçoes
-// Criar paleta de cores aleatorias./ manter preto.
-function makeColors() {
-  const numbers = [];
+colorPicker.addEventListener('input', (event) => {
+    const selectedColor = event.target.value;
+    colorPicker.dataset.selectedColor = selectedColor;
+});
 
-  for (let index = 0; index < 9; index += 1) {
-    numbers.push(Math.floor(Math.random() * 255));
-  }
+grid.addEventListener('click', (event) => {
+    const selectedColor = colorPicker.dataset.selectedColor;
+    const clickedSquare = event.target;
 
-  const color2 = `rgb(${numbers[0]},${numbers[1]},${numbers[2]})`;
-  const color3 = `rgb(${numbers[3]},${numbers[4]},${numbers[5]})`;
-  const color4 = `rgb(${numbers[6]},${numbers[7]},${numbers[8]})`;
-
-  color[0].style.backgroundColor = 'rgb(0,0,0)';
-  color[1].style.backgroundColor = color2;
-  color[2].style.backgroundColor = color3;
-  color[3].style.backgroundColor = color4;
-}
-// Seletor
-function handleSelection(event) {
-  const currentColor = event.target.classList;
-  const previousColor = document.querySelector('.selected');
-
-  if (!currentColor.contains('selected')) {
-    currentColor.add('selected');
-    if (previousColor != null) {
-      previousColor.classList.remove('selected');
+    if (selectedColor && clickedSquare.classList.contains('square')) {
+        if (clickedSquare.style.backgroundColor !== selectedColor) {
+            clickedSquare.style.backgroundColor = selectedColor;
+        } else {
+            clickedSquare.style.backgroundColor = 'white';
+        }
     }
-  }
-}
-// Guardar background-color do que for clicado
-function coloring(event) {
-  const selectedElement = document.querySelector('.selected');
-  const quadrado = event.target;
+});
 
-  if (selectedElement != null) {
-    const selectedColor = window
-      .getComputedStyle(selectedElement)
-      .getPropertyValue('background-color');
-    quadrado.style.backgroundColor = selectedColor;
-  } else {
-    quadrado.style.backgroundColor = 'rgb(255,255,255)';
-  }
-}
-
-// Criar tabela de pixeis
-function makePixelBoard() {
-  boardLine = document.querySelectorAll(boardLineClass);
-
-  for (let index = 1; index <= boardSize; index += 1) {
-    const line = document.createElement('div');
-    line.classList.add('board-line'); 
-
-    document.querySelector('#pixel-board').appendChild(line);
-    for (let index2 = 1; index2 <= boardSize; index2 += 1) {
-      const pixel = document.createElement('div');
-      pixel.classList.add('pixel');
-
-      document.querySelectorAll(boardLineClass)[index - 1].appendChild(pixel);
+resetButton.addEventListener('click', () => {
+    const squares = grid.getElementsByClassName('square');
+    for (const square of squares) {
+        square.style.backgroundColor = 'white';
     }
-  }
+});
+
+generateButton.addEventListener('click', () => {
+    const newSize = parseInt(gridSizeInput.value);
+    if (!isNaN(newSize)) {
+        generateGrid(newSize);
+    }
+});
+
+function generateGrid(size) {
+    grid.innerHTML = '';
+    grid.style.gridTemplateColumns = `repeat(${size}, 40px)`;
+
+    for (let i = 0; i < size * size; i++) {
+        const square = document.createElement('div');
+        square.classList.add('square');
+        grid.appendChild(square);
+    }
 }
 
-
-function removeBoard() {
-  boardPixels = document.querySelectorAll('.pixel');
-  boardLine = document.querySelectorAll(boardLineClass);
-
-  for (let index = 0; index < boardPixels.length; index += 1) {
-    boardPixels[index].remove();
-  }
-
-  for (let index = 0; index < boardLine.length; index += 1) {
-    boardLine[index].remove();
-  }
-}
-
-// Criar borda inserindo numero
-function makeNewBoard() {
-  if (!document.querySelector('#board-size').value > 0) {
-    window.alert('Board inválido!');
-    return null;
-  }
-
-  boardSize = document.querySelector('#board-size').value;
-  if (boardSize < 5) {
-    boardSize = 5;
-  }
-  if (boardSize > 50) {
-    boardSize = 50;
-  }
-
-  removeBoard();
-  makePixelBoard();
-
-  boardPixels = document.querySelectorAll('.pixel');
-
-  for (let index = 0; index < boardPixels.length; index += 1) {
-    boardPixels[index].addEventListener('click', coloring);
-  }
-}
-    
-// Voltar a cor branca
-function handleClearBoard() {
-  for (let index = 0; index < boardPixels.length; index += 1) {
-    boardPixels[index].style.backgroundColor = 'rgb(255,255,255)';
-  }
-}
-
-makePixelBoard();
-makeColors();
-
-// Eventos
-for (let index = 0; index < color.length; index += 1) {
-  color[index].addEventListener('click', handleSelection);
-}
-
-boardPixels = document.querySelectorAll('.pixel');
-for (let index = 0; index < boardPixels.length; index += 1) {
-  boardPixels[index].addEventListener('click', coloring);
-}
-document
-  .querySelector('#clear-board')
-  .addEventListener('click', handleClearBoard);
-document
-  .querySelector('#generate-board')
-  .addEventListener('click', makeNewBoard);
+// Initial grid generation
+generateGrid(10);

@@ -1,27 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-  <title>Pixels Art</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Pixel Art</title>
 </head>
-<body></body>
-  <h1 id="title">Paleta de Cores</h1>
-  <header id="color-palette">
-    <div class="color black selected"></div>
-    <div class="color red"></div>
-    <div class="color green"></div>
-    <div class="color blue"></div>
-  </header>
-  <div id="board-input">
-    <input id="board-size" type="number" min="1" max="50">
-    <button id="generate-board">VQV</button>
-    <p style="color: white"><b>Insira um numero para gerar um tabuleiro.</b></p>
-  </div>
-  <section id="pixel-board"></section>
-  <button id="clear-board">Limpar</button>
-  <script src="script.js"></script>
+<body>
+    <h1>Pixel Art</h1>
+    <div>
+    <h2>Escolha uma Cor</h2>
+    <input type="color" id="colorPicker">
+    </div>
+    <label for="gridSize">Tamanho da Grade:</label>
+    <input type="number" id="gridSize" min="1" value="10">
+    <button id="generateButton">Gerar Grade</button>
+    <button id="resetButton">Limpar Tudo</button>
+    <div id="grid-conteiner">
+    <div id="grid"></div>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
